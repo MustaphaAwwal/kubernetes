@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ignite-dev
+  labels:
+    app: simple-node
+spec:
+  containers:
+  - name: awwal-simplehello
+    image: awwalmustapha/ignitedeve-hello
+    ports:
+    -  containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ignite-service
+spec:
+  type: NodePort
+  ports:
+  - targetPort: 3000
+    port: 80
+    nodePort: 30000
+  selector:
+    app: simple-node
+
